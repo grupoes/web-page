@@ -9,6 +9,8 @@
     <!--publicidad-->
 
     <title>ASESORES DE TESISS</title>
+
+    <link rel="icon" href="assets/img/grupoes.ico" type="image/x-icon">
     <!-- Bootstrap -->
     <link rel='stylesheet' type='text/css' href='assets/css/bootstrap/bootstrap.min.css'> <!-- Optional theme -->
     <link rel='stylesheet' type='text/css' href='assets/css/bootstrap/bootstrap-theme.min.css'> <!-- Custom css -->
