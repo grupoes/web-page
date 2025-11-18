@@ -1,0 +1,1 @@
+const url_base = document.getElementById('url_basic').value;

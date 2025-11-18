@@ -29,7 +29,7 @@
 
     <!-- Begin page -->
     <div id="wrapper">
-
+        <input type="hidden" id="url_basic" value="<?= base_url() ?>" />
         <!-- Topbar Start -->
         <div class="navbar-custom">
             <?= $this->include('admin/layouts/header') ?>

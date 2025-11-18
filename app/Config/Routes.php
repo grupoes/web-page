@@ -12,3 +12,4 @@ $routes->post('/acceder', 'Admin::acceso');
 
 $routes->get('/home', 'Admin::home');
 $routes->get('/contactos', 'Contacto::index');
+$routes->get('/contactos/render', 'Contacto::render');

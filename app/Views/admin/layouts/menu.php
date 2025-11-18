@@ -32,7 +32,7 @@
     </li>
 
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle arrow-none" href="./contactos" id="topnav-contacto">
+        <a class="nav-link dropdown-toggle arrow-none" href="/contactos" id="topnav-contacto">
             <i data-feather="layout"></i> Contactos
         </a>
     </li>

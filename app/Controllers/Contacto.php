@@ -2,12 +2,21 @@
 
 namespace App\Controllers;
 
-use App\Models\UserModel;
+use App\Models\ContactoModel;
 
-class Admin extends BaseController
+class Contacto extends BaseController
 {
-    public function login(): string
+    public function index(): string
     {
         return view('admin/contacto/index');
+    }
+
+    public function render()
+    {
+        $contacto = new ContactoModel();
+
+        $data = $contacto->orderBy('id', 'desc')->findAll();
+
+        return $this->response->setJSON($data);
     }
 }

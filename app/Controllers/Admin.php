@@ -6,8 +6,12 @@ use App\Models\UserModel;
 
 class Admin extends BaseController
 {
-    public function login(): string
+    public function login()
     {
+        if (session()->loggin) {
+            return redirect()->to(base_url('panel'));
+        }
+
         return view('admin/login');
     }
 
@@ -16,7 +20,7 @@ class Admin extends BaseController
         $user = new UserModel();
 
         try {
-            $username = $this->request->getPost('user');
+            $username = $this->request->getPost('username');
             $password = $this->request->getPost('password');
 
             $usuario = $user->where('usuario', $username)->where('password', $password)->where('estado', 1)->first();
@@ -48,6 +52,10 @@ class Admin extends BaseController
 
     public function home()
     {
+        if (!session()->loggin) {
+            return redirect()->to(base_url('panel'));
+        }
+
         return view('admin/home');
     }
 }
