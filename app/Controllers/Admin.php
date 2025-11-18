@@ -50,6 +50,16 @@ class Admin extends BaseController
         }
     }
 
+    public function logout()
+    {
+        $session = session();
+        $session->destroy();
+        return $this->response->setJSON([
+            'status' => 'success',
+            'message' => 'Usuario deslogueado correctamente'
+        ]);
+    }
+
     public function home()
     {
         if (!session()->loggin) {

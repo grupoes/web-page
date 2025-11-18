@@ -20,7 +20,7 @@
 
                 <div class="dropdown-divider"></div>
 
-                <a href="#" class="dropdown-item notify-item" onclick="cerrarSesion()">
+                <a href="#" class="dropdown-item notify-item" onclick="logout()">
                     <i data-feather="log-out" class="icon-dual icon-xs me-1"></i><span>Salir</span>
                 </a>
 
