@@ -333,6 +333,7 @@
                         <label
                             class="text-xs font-bold text-primary/60 uppercase tracking-widest px-1">Nombre</label>
                         <input
+                            id="input-nombre"
                             class="w-full rounded-2xl border-slate-200 bg-white/50 focus:bg-white focus:ring-4 focus:ring-brand-blue-light/10 focus:border-brand-blue-light py-4 px-6 transition-all"
                             placeholder="Tu nombre completo"
                             type="text" />
@@ -341,6 +342,7 @@
                         <label
                             class="text-xs font-bold text-primary/60 uppercase tracking-widest px-1">Nivel académico</label>
                         <select
+                            id="select-nivel"
                             class="w-full rounded-2xl border-slate-200 bg-white/50 focus:bg-white focus:ring-4 focus:ring-brand-blue-light/10 focus:border-brand-blue-light py-4 px-6 transition-all appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20stroke%3D%22%236b7280%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%20d%3D%22m6%208%204%204%204-4%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem_1.25rem] bg-[right_1.5rem_center] bg-no-repeat">
                             <option value="" disabled selected>Selecciona tu nivel</option>
                             <option value="Pregrado">Pregrado</option>
@@ -534,16 +536,12 @@
                     <div class="flex flex-col sm:flex-row gap-4 pt-2">
                         <a
                             class="bg-[#25D366] text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-[#25D366]/20 hover:shadow-[#25D366]/40 transition-all flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95"
-                            href="https://wa.me/tu_numero_aqui"
+                            href="https://wa.me/+51976443266"
                             target="_blank">
                             <span class="material-symbols-outlined">chat</span>
-                            Recibir reporte en WhatsApp
+                            Conversar por WhatsApp
                         </a>
-                        <a
-                            class="border-2 border-slate-100 text-primary font-bold px-8 py-4 rounded-2xl hover:bg-slate-50 transition-all flex items-center justify-center gap-3 active:scale-95"
-                            href="#">
-                            Agendar Consultoría
-                        </a>
+
                     </div>
                 </div>
 
@@ -896,11 +894,14 @@
         }
 
         function displayResults(score) {
+            const nombreCompleto = document.getElementById("input-nombre").value.trim();
+            const primerNombre = nombreCompleto.split(' ')[0];
+
             const resultData = {
                 green: {
                     range: [20, 24],
                     percent: Math.round((score / 24) * 100) + "%",
-                    title: 'Tu tesis está <span class="text-brand-green">bien encaminada</span>',
+                    title: 'tu tesis está <span class="text-brand-green">bien encaminada</span>',
                     message: "Tu tema está bien encaminado. Lo que te queda por delante es la parte técnica: validación del instrumento, análisis estadístico, redacción de resultados, formato APA, reducción de Turnitin. Te podemos asistir en los bloques que necesites delegar de la operación técnica, mientras tú te concentras en comprender los hallazgos y preparar tu sustentación.",
                     color: "#00E8AE",
                     badge: "VERDE: BIEN ENCAMINADA",
@@ -910,7 +911,7 @@
                 yellow: {
                     range: [12, 19],
                     percent: Math.round((score / 24) * 100) + "%",
-                    title: 'Tu tesis está en <span class="text-amber-500">zona de riesgo</span>',
+                    title: 'tu tesis está en <span class="text-amber-500">zona de riesgo</span>',
                     message: "Tu tema tiene fondo, pero hay desalineaciones que pueden costarte observaciones serias o un dictamen desaprobado. Aún estás en un punto ideal para ordenar tu planteamiento, te acompañamos a organizar tu marco teórico y estructurar tu proyecto paso a paso. Tú aportas la idea; nosotros te asistimos en convertirla en un proyecto bien fundamentado.",
                     color: "#f59e0b",
                     badge: "AMARILLO: EN RIESGO",
@@ -920,7 +921,7 @@
                 red: {
                     range: [0, 11],
                     percent: Math.round((score / 24) * 100) + "%",
-                    title: 'Tu tesis tiene <span class="text-rose-500">problemas estructurales</span>',
+                    title: 'tu tesis tiene <span class="text-rose-500">problemas estructurales</span>',
                     message: "Tu idea de investigación necesita replantearse antes de seguir avanzando. Tal como está, es probable que enfrentes múltiples observaciones o dificultades para sostenerla académicamente. Si quieres ordenar tu tema y convertirlo en una propuesta sólida, podemos ayudarte a trabajarlo contigo desde el inicio.",
                     color: "#ef4444",
                     badge: "ROJO: PROBLEMAS ESTRUCTURALES",
@@ -935,7 +936,7 @@
             else res = resultData.red;
 
             // Update UI
-            document.getElementById("result-title").innerHTML = res.title;
+            document.getElementById("result-title").innerHTML = `${primerNombre}, ${res.title}`;
             document.getElementById("result-message").innerText = res.message;
             document.getElementById("result-badge-text").innerText = res.badge;
             document.getElementById("score-text").innerText = res.percent;
@@ -967,6 +968,27 @@
         document
             .getElementById("btn-continuar")
             .addEventListener("click", function() {
+                const nombreInput = document.getElementById("input-nombre");
+                const nivelSelect = document.getElementById("select-nivel");
+
+                let hasError = false;
+
+                if (!nombreInput.value.trim()) {
+                    nombreInput.classList.add("border-error", "bg-error/5");
+                    hasError = true;
+                } else {
+                    nombreInput.classList.remove("border-error", "bg-error/5");
+                }
+
+                if (!nivelSelect.value) {
+                    nivelSelect.classList.add("border-error", "bg-error/5");
+                    hasError = true;
+                } else {
+                    nivelSelect.classList.remove("border-error", "bg-error/5");
+                }
+
+                if (hasError) return;
+
                 document.getElementById("quiz-section").classList.remove("hidden");
                 document
                     .getElementById("quiz-section")
