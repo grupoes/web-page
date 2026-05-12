@@ -244,11 +244,11 @@
         <div
             class="max-w-7xl mx-auto px-lg grid md:grid-cols-2 gap-xl items-center relative z-10 py-section">
             <div class="space-y-lg">
-                <div
+                <!--<div
                     class="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full border border-white/20 backdrop-blur-md">
                     <span class="material-symbols-outlined text-brand-green text-[18px]">verified</span>
-                    <span class="text-white text-xs font-bold tracking-wide uppercase">Diagnóstico IA 2024</span>
-                </div>
+                    <span class="text-white text-xs font-bold tracking-wide uppercase">Diagnóstico IA 2026</span>
+                </div>-->
                 <h1 class="font-display-lg text-display-lg text-white leading-[1.1]">
                     ¿Tu tesis
                     <span class="text-brand-green italic relative">está mal?<svg
