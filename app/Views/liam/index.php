@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>ES Consultores | Diagnóstico de Tesis SaaS</title>
+    <link rel="icon" href="assets/img/grupoes.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
@@ -553,7 +554,7 @@
                         <div
                             class="absolute inset-0 bg-brand-green/10 rounded-full blur-[60px] animate-pulse"
                             id="score-glow"></div>
-                        
+
                         <!-- Progress Circle -->
                         <svg class="w-full h-full transform -rotate-90 drop-shadow-xl relative z-10">
                             <circle
