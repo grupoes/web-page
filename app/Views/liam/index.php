@@ -268,7 +268,7 @@
                     <a
                         class="bg-brand-green text-primary font-bold px-10 py-4 rounded-full shadow-2xl shadow-brand-green/20 hover:shadow-brand-green/40 transition-all hover:scale-105 active:scale-95 w-full sm:w-auto text-center"
                         href="#paso-1">
-                        Iniciar Evaluación Gratis
+                        Iniciar Diagnóstico
                     </a>
                     <div class="flex flex-col items-start gap-1">
                         <div class="flex -space-x-2">
@@ -586,7 +586,7 @@
                                 id="result-liam-img"
                                 alt="LIAM Result"
                                 class="w-full h-full object-cover scale-110 transition-all duration-700"
-                                src="<?= base_url('assets/img/liampensativo.png') ?>" />
+                                src="" />
                         </div>
 
                         <!-- Score Text Tooltip -->
@@ -626,7 +626,7 @@
                     <img
                         alt="ES Consultores White"
                         class="h-10 w-auto brightness-0 invert"
-                        src="https://lh3.googleusercontent.com/aida/ADBb0uglEF4gTnk93hCvjxRJKqk9z0ESgMk-C9zDq4mc0Xka5oU291aniLXncjlxgCOKOD9rSrJeCR-psiQS23CM7jGkTK6-vXwd5iMrQsw9Ur5_dUlESFkRmv6AUhXstzFK73hDONKUjSAdTIbU6I4zWp5BC_9UDo9t8pUv_Nual8O5ocb_Z4hQp0GOV0YmHqNtfrXCcw879fxnTu9E5GKM3gVllm4GwzX2jv1rOqYauJ81QzbRTIKLINe_rQ5SmswZ6BgewDWR2LLA" />
+                        src="<?= base_url('assets/img/logo-dark.svg') ?>" />
                     <p class="font-medium text-white/50 max-w-xs leading-relaxed">
                         Elevando los estándares de la investigación académica con
                         tecnología de última generación.
@@ -650,12 +650,6 @@
                             <li>
                                 <a class="hover:text-brand-green transition-colors" href="#">Diagnóstico</a>
                             </li>
-                            <li>
-                                <a class="hover:text-brand-green transition-colors" href="#">LIAM IA</a>
-                            </li>
-                            <li>
-                                <a class="hover:text-brand-green transition-colors" href="#">Planes</a>
-                            </li>
                         </ul>
                     </div>
                     <div class="space-y-4">
@@ -678,7 +672,7 @@
                     <div class="space-y-4 col-span-2 md:col-span-1">
                         <h5
                             class="text-white font-bold text-sm tracking-widest uppercase">
-                            Newsletter
+                            Correo electrónico
                         </h5>
                         <div class="flex gap-2">
                             <input
@@ -695,7 +689,7 @@
             <div
                 class="pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
                 <p class="text-white/30 text-xs font-medium">
-                    © 2024 ES Consultores - Expertos en Metodología Académica SaaS.
+                    © 2026 ES Consultores - Expertos en Metodología Académica.
                     Todos los derechos reservados.
                 </p>
                 <div
