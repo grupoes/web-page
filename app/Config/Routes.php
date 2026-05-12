@@ -14,3 +14,5 @@ $routes->get('/logout', 'Admin::logout');
 $routes->get('/home', 'Admin::home');
 $routes->get('/contactos', 'Contacto::index');
 $routes->get('/contactos/render', 'Contacto::render');
+
+$routes->get('/liam', 'Liam::index');
