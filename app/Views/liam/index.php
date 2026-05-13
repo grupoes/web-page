@@ -258,14 +258,14 @@
                 class="absolute top-1/2 -right-48 w-[600px] h-[600px] bg-brand-blue-light/10 rounded-full blur-[160px]"></div>
         </div>
         <div
-            class="max-w-7xl mx-auto px-lg grid md:grid-cols-2 gap-xl items-center relative z-10 py-section">
-            <div class="space-y-lg">
+            class="max-w-7xl mx-auto px-lg grid md:grid-cols-2 gap-xl items-center relative z-10 py-20 md:py-section text-center md:text-left">
+            <div class="flex flex-col items-center md:items-start space-y-lg">
                 <!--<div
                     class="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full border border-white/20 backdrop-blur-md">
                     <span class="material-symbols-outlined text-brand-green text-[18px]">verified</span>
                     <span class="text-white text-xs font-bold tracking-wide uppercase">Diagnóstico IA 2026</span>
                 </div>-->
-                <h1 class="font-display-lg text-display-lg text-white leading-[1.1]">
+                <h1 class="font-display-lg text-4xl md:text-display-lg text-white leading-tight md:leading-[1.1]">
                     DIAGNÓSTICA
                     <span class="text-brand-green italic relative">TÚ TESIS<svg
                             class="absolute -bottom-2 left-0 w-full h-2 text-brand-green/30"
@@ -279,16 +279,16 @@
                         </svg></span>
                 </h1>
                 <p
-                    class="font-body-lg text-body-lg text-white/70 max-w-lg leading-relaxed">
+                    class="font-body-lg text-body-lg text-white/70 max-w-lg leading-relaxed mx-auto md:mx-0">
                     Responde 12 preguntas y descubre si tu tema está bien planteado.
                 </p>
-                <div class="flex flex-col sm:flex-row items-center gap-lg pt-6">
+                <div class="flex flex-col sm:flex-row items-center gap-lg pt-6 w-full sm:w-auto">
                     <a
-                        class="bg-brand-green text-primary font-bold px-10 py-4 rounded-full shadow-2xl shadow-brand-green/20 hover:shadow-brand-green/40 transition-all hover:scale-105 active:scale-95 w-full sm:w-auto text-center"
+                        class="bg-brand-green text-primary font-bold px-10 py-4 rounded-full shadow-xl shadow-brand-green/20 hover:shadow-brand-green/40 transition-all hover:scale-105 active:scale-95 w-full sm:w-auto text-center"
                         href="#paso-1">
                         Iniciar Diagnóstico
                     </a>
-                    <div class="flex flex-col items-start gap-1">
+                    <div class="flex flex-col items-center md:items-start gap-1">
                         <div class="flex -space-x-2">
                             <div
                                 class="w-8 h-8 rounded-full border-2 border-primary bg-slate-200"></div>
@@ -320,14 +320,14 @@
         </div>
     </section>
     <!-- Section 2: INITIAL DATA -->
-    <section class="py-section bg-[#F8FAFF] relative z-20" id="paso-1">
+    <section class="py-16 md:py-section bg-[#F8FAFF] relative z-20" id="paso-1">
         <div class="max-w-3xl mx-auto px-lg">
             <div
                 class="w-full bg-slate-200 h-2 rounded-full mb-xl overflow-hidden p-0.5">
                 <div
                     class="bg-gradient-to-r from-brand-blue-light to-brand-green h-full w-[8%] rounded-full progress-glow transition-all duration-1000"></div>
             </div>
-            <div class="flex items-center gap-6 mb-12">
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-6 mb-12 text-center md:text-left">
                 <div
                     class="w-20 h-20 rounded-3xl bg-primary flex items-center justify-center border-4 border-white shadow-xl rotate-3 shrink-0 overflow-hidden">
                     <img
@@ -337,7 +337,7 @@
                 </div>
                 <div>
                     <h2
-                        class="font-headline-lg text-headline-lg text-primary tracking-tight">
+                        class="font-headline-lg text-3xl md:text-headline-lg text-primary tracking-tight">
                         Paso 1: Contexto
                     </h2>
                     <p class="text-on-surface-variant font-medium">
@@ -345,7 +345,7 @@
                     </p>
                 </div>
             </div>
-            <div class="glass-card p-10 rounded-[2.5rem] space-y-8">
+            <div class="glass-card p-6 md:p-10 rounded-[2.5rem] space-y-8">
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="space-y-2">
                         <label
