@@ -443,7 +443,7 @@
 
     </section>
     <!-- Section 2: INITIAL DATA -->
-    <section class="py-16 md:py-section bg-[#F8FAFF] relative z-20 hidden" id="paso-1">
+    <section class="h-screen h-[100dvh] flex items-center bg-[#F8FAFF] relative z-20 hidden overflow-hidden" id="paso-1">
         <div class="max-w-3xl mx-auto px-lg">
             <div
                 class="w-full bg-slate-200 h-2 rounded-full mb-xl overflow-hidden p-0.5">
@@ -553,7 +553,7 @@
     <!-- Section 4: ANALYSIS TRANSITION -->
     <section
         id="transition-section"
-        class="py-20 md:py-32 bg-primary relative overflow-hidden hidden">
+        class="h-screen h-[100dvh] flex items-center bg-primary relative overflow-hidden hidden">
         <!-- Ambient Premium Glows -->
         <div class="absolute inset-0 opacity-40 pointer-events-none">
             <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_15%_50%,_#0072ED22_0%,_transparent_50%)]"></div>
@@ -610,7 +610,7 @@
         </div>
     </section>
     <!-- Section 4.5: POST-QUIZ NAME REQUEST -->
-    <section id="name-step" class="py-10 md:py-20 bg-white hidden relative overflow-hidden">
+    <section id="name-step" class="h-screen h-[100dvh] flex items-center bg-white hidden relative overflow-hidden">
         <div class="max-w-xl mx-auto px-lg text-center relative z-10">
             <div class="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full mb-6">
                 <span class="material-symbols-outlined text-primary text-sm">stars</span>
@@ -1149,10 +1149,10 @@
                 e.preventDefault();
                 const paso1 = document.getElementById('paso-1');
                 paso1.classList.remove('hidden');
-                document.body.classList.remove('overflow-hidden'); // Desbloquear scroll
-                paso1.scrollIntoView({
-                    behavior: 'smooth'
-                });
+                
+                // Desplazar al paso 1 y bloquear scroll para que parezca otra pantalla
+                paso1.scrollIntoView({ behavior: 'auto' });
+                document.body.classList.add('overflow-hidden');
             });
         });
     </script>
