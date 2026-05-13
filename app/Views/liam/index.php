@@ -226,18 +226,34 @@
         .animate-pointing-down {
             animation: pointing-down 0.8s ease-in-out infinite;
         }
-        /* Animación: Entrar por la Derecha (Siguiente) */
+        /* Animación: Deslizamiento Suave (Siguiente) */
         @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
+            0% {
+                opacity: 0;
+                transform: translateX(80px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
-        /* Animación: Entrar por la Izquierda (Anterior) */
+        /* Animación: Deslizamiento Suave (Anterior) */
         @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
+            0% {
+                opacity: 0;
+                transform: translateX(-80px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
-        .animate-enter-right { animation: slideInRight 0.4s ease-out forwards; }
-        .animate-enter-left { animation: slideInLeft 0.4s ease-out forwards; }
+        .animate-enter-right { 
+            animation: slideInRight 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
+        }
+        .animate-enter-left { 
+            animation: slideInLeft 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
+        }
     </style>
 </head>
 
@@ -846,10 +862,10 @@
             const card = document.getElementById("question-card");
             
             if (animate) {
-                // Reiniciar y seleccionar animación según lo solicitado (Slide In Left para 'next')
+                // Reiniciar y seleccionar animación (Efecto Libro)
                 card.classList.remove("animate-enter-right", "animate-enter-left");
                 void card.offsetWidth; // Forzar reflujo
-                card.classList.add(direction === 'next' ? "animate-enter-left" : "animate-enter-right");
+                card.classList.add(direction === 'next' ? "animate-enter-right" : "animate-enter-left");
             }
 
             const q = questions[currentQuestionIndex];
@@ -903,10 +919,10 @@
             const buttons = document.querySelectorAll("#options-container button");
             buttons.forEach(btn => btn.style.pointerEvents = "none");
 
-            // Avance automático tras 500ms
+            // Avance automático tras 1000ms (1 segundo) para mayor calma
             setTimeout(() => {
                 handleNext();
-            }, 500);
+            }, 1000);
         }
 
         function handleNext() {
