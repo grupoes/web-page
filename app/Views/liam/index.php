@@ -1136,6 +1136,25 @@
             document.getElementById("result-icon-container").style.backgroundColor =
                 res.color + "10";
 
+            // Actualizar Enlaces de WhatsApp con mensaje personalizado
+            const nivelAcademico = document.getElementById("select-nivel").value || "no especificado";
+            const phone = "51976443266";
+            let waMsg = "";
+            
+            if (nombreCompleto) {
+                waMsg = `Hola soy ${nombreCompleto}, estoy en nivel académico ${nivelAcademico} necesito más información`;
+            } else {
+                waMsg = `Hola, estoy en nivel académico ${nivelAcademico} necesito más información`;
+            }
+            
+            const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(waMsg)}`;
+            
+            // Aplicar a ambos botones
+            const btnWA = document.getElementById("btn-whatsapp");
+            const floatingWA = document.getElementById("floating-whatsapp");
+            if (btnWA) btnWA.href = waUrl;
+            if (floatingWA) floatingWA.href = waUrl;
+
             // Mostrar flecha indicadora de WhatsApp tras 2 segundos solo en Desktop
             setTimeout(() => {
                 const arrow = document.getElementById("whatsapp-arrow");
