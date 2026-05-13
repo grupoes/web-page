@@ -361,7 +361,7 @@
 </head>
 
 <body
-    class="bg-[#F8FAFF] text-on-surface font-body-md selection:bg-brand-green/30">
+    class="bg-[#F8FAFF] text-on-surface font-body-md selection:bg-brand-green/30 overflow-hidden">
     <!-- Brand Header (Absolute) -->
     <div class="absolute top-0 left-0 right-0 z-50 pointer-events-none p-lg">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
@@ -380,7 +380,7 @@
     </div>
     <!-- Section 1: HERO -->
     <section
-        class="hero-gradient min-h-screen flex items-center relative overflow-hidden">
+        class="hero-gradient h-screen h-[100dvh] flex items-center relative overflow-hidden">
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
             <div
                 class="absolute -top-24 -left-24 w-96 h-96 bg-brand-green/10 rounded-full blur-[120px]"></div>
@@ -467,29 +467,18 @@
                     </p>
                 </div>
             </div>
-            <div class="glass-card p-6 md:p-10 rounded-[2.5rem] space-y-8">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="space-y-2">
-                        <label
-                            class="text-xs font-bold text-primary/60 uppercase tracking-widest px-1">Nombre</label>
-                        <input
-                            id="input-nombre"
-                            class="w-full rounded-2xl border-slate-200 bg-white/50 focus:bg-white focus:ring-4 focus:ring-brand-blue-light/10 focus:border-brand-blue-light py-4 px-6 transition-all"
-                            placeholder="Tu nombre completo"
-                            type="text" />
-                    </div>
-                    <div class="space-y-2">
-                        <label
-                            class="text-xs font-bold text-primary/60 uppercase tracking-widest px-1">Nivel académico</label>
-                        <select
-                            id="select-nivel"
-                            class="w-full rounded-2xl border-slate-200 bg-white/50 focus:bg-white focus:ring-4 focus:ring-brand-blue-light/10 focus:border-brand-blue-light py-4 px-6 transition-all appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20stroke%3D%22%236b7280%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%20d%3D%22m6%208%204%204%204-4%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem_1.25rem] bg-[right_1.5rem_center] bg-no-repeat">
-                            <option value="" disabled selected>Selecciona tu nivel</option>
-                            <option value="Pregrado">Pregrado</option>
-                            <option value="Maestría">Maestría</option>
-                            <option value="Doctorado">Doctorado</option>
-                        </select>
-                    </div>
+            <div class="glass-card p-6 md:p-10 rounded-[2.5rem]">
+                <div class="max-w-md mx-auto space-y-2">
+                    <label
+                        class="text-xs font-bold text-primary/60 uppercase tracking-widest px-1">Nivel académico</label>
+                    <select
+                        id="select-nivel"
+                        class="w-full rounded-2xl border-slate-200 bg-white/50 focus:bg-white focus:ring-4 focus:ring-brand-blue-light/10 focus:border-brand-blue-light py-4 px-6 transition-all appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20stroke%3D%22%236b7280%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%20d%3D%22m6%208%204%204%204-4%22%2F%3E%3C%2Fsvg%3E')] bg-[length:1.25rem_1.25rem] bg-[right_1.5rem_center] bg-no-repeat">
+                        <option value="" disabled selected>Selecciona tu nivel</option>
+                        <option value="Pregrado">Pregrado</option>
+                        <option value="Maestría">Maestría</option>
+                        <option value="Doctorado">Doctorado</option>
+                    </select>
                 </div>
                 <div class="text-center !mt-4">
                     <p class="text-xs text-on-surface-variant/60 font-medium">
@@ -619,6 +608,45 @@
             </div>
         </div>
     </section>
+    <!-- Section 4.5: POST-QUIZ NAME REQUEST -->
+    <section id="name-step" class="py-20 bg-white hidden relative overflow-hidden">
+        <div class="max-w-xl mx-auto px-lg text-center relative z-10">
+            <div class="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full mb-6">
+                <span class="material-symbols-outlined text-primary text-sm">stars</span>
+                <span class="text-primary text-xs font-bold uppercase tracking-wider">Análisis Finalizado</span>
+            </div>
+            <h2 class="font-display-lg text-4xl text-primary mb-6 leading-tight">¡Excelente trabajo!</h2>
+            <p class="text-on-surface-variant text-lg mb-10 leading-relaxed">He procesado tus respuestas. ¿Te gustaría que personalice tu reporte final con tu nombre?</p>
+
+            <div id="name-choice-container" class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+                <button id="btn-name-yes" class="flex-1 bg-primary text-white font-bold px-8 py-4 rounded-2xl shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined">edit</span>
+                    Sí, personalizar
+                </button>
+                <button id="btn-name-no" class="flex-1 bg-slate-100 text-slate-600 font-bold px-8 py-4 rounded-2xl hover:bg-slate-200 transition-all">
+                    No, ver resultados
+                </button>
+            </div>
+
+            <div id="name-input-container" class="hidden space-y-6 animate-enter-right">
+                <div class="space-y-2">
+                    <input
+                        id="input-nombre"
+                        class="w-full rounded-2xl border-slate-200 bg-slate-50 focus:bg-white focus:ring-4 focus:ring-brand-blue-light/10 focus:border-brand-blue-light py-5 px-6 text-center text-xl font-medium transition-all"
+                        placeholder="Escribe tu nombre completo"
+                        type="text" />
+                </div>
+                <button id="btn-final-results" class="w-full bg-brand-green text-primary font-bold py-5 rounded-2xl shadow-xl shadow-brand-green/20 hover:shadow-brand-green/40 transition-all flex items-center justify-center gap-3 text-lg">
+                    Generar Reporte Personalizado
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+        <!-- Background elements for name step -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-brand-green/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-brand-blue-light/5 rounded-full blur-3xl -ml-32 -mb-32"></div>
+    </section>
+
     <!-- Section 5: RESULTS -->
     <section
         id="results-section"
@@ -962,16 +990,27 @@
 
             setTimeout(() => {
                 transitionSection.classList.add("hidden");
-                const resultsSection = document.getElementById("results-section");
-                resultsSection.classList.remove("hidden");
-                resultsSection.scrollIntoView({
+                document.getElementById("name-step").classList.remove("hidden");
+                document.getElementById("name-step").scrollIntoView({
                     behavior: "smooth"
                 });
-                displayResults(totalScore);
+                // Guardar puntaje para usarlo después de pedir el nombre
+                window.finalScore = totalScore;
             }, 3000);
         }
 
-        function displayResults(score) {
+        function displayResults() {
+            document.getElementById("name-step").classList.add("hidden");
+            document.getElementById("results-section").classList.remove("hidden");
+            document.getElementById("results-section").scrollIntoView({
+                behavior: "smooth"
+            });
+            
+            // Renderizar con el puntaje guardado
+            renderResultsUI(window.finalScore);
+        }
+
+        function renderResultsUI(score) {
             const nombreCompleto = document.getElementById("input-nombre").value.trim();
             const primerNombre = nombreCompleto.split(' ')[0];
 
@@ -1054,17 +1093,9 @@
         document
             .getElementById("btn-continuar")
             .addEventListener("click", function() {
-                const nombreInput = document.getElementById("input-nombre");
                 const nivelSelect = document.getElementById("select-nivel");
 
                 let hasError = false;
-
-                if (!nombreInput.value.trim()) {
-                    nombreInput.classList.add("border-error", "bg-error/5");
-                    hasError = true;
-                } else {
-                    nombreInput.classList.remove("border-error", "bg-error/5");
-                }
 
                 if (!nivelSelect.value) {
                     nivelSelect.classList.add("border-error", "bg-error/5");
@@ -1076,11 +1107,9 @@
                 if (hasError) return;
 
                 document.getElementById("quiz-section").classList.remove("hidden");
-                document
-                    .getElementById("quiz-section")
-                    .scrollIntoView({
-                        behavior: "smooth"
-                    });
+                document.getElementById("quiz-section").scrollIntoView({
+                    behavior: "smooth"
+                });
                 updateQuizUI(true, 'next');
             });
 
@@ -1092,12 +1121,28 @@
                     updateQuizUI(true, 'prev');
                 }
             });
+        // Lógica de Paso de Nombre
+        document.getElementById("btn-name-yes").addEventListener("click", function() {
+            document.getElementById("name-choice-container").classList.add("hidden");
+            document.getElementById("name-input-container").classList.remove("hidden");
+            document.getElementById("input-nombre").focus();
+        });
+
+        document.getElementById("btn-name-no").addEventListener("click", function() {
+            displayResults();
+        });
+
+        document.getElementById("btn-final-results").addEventListener("click", function() {
+            displayResults();
+        });
+
         // Revelar Paso 1 al iniciar
         document.querySelectorAll('a[href="#paso-1"]').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
                 const paso1 = document.getElementById('paso-1');
                 paso1.classList.remove('hidden');
+                document.body.classList.remove('overflow-hidden'); // Desbloquear scroll
                 paso1.scrollIntoView({
                     behavior: 'smooth'
                 });
