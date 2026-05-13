@@ -1003,6 +1003,7 @@
 
         function displayResults() {
             document.getElementById("name-step").classList.add("hidden");
+            document.body.classList.remove("overflow-hidden"); // Desbloquear scroll
             document.getElementById("results-section").classList.remove("hidden");
             document.getElementById("results-section").scrollIntoView({
                 behavior: "smooth"
