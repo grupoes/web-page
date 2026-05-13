@@ -651,7 +651,7 @@
     <!-- Section 5: RESULTS -->
     <section
         id="results-section"
-        class="py-12 md:py-20 bg-white relative overflow-hidden hidden">
+        class="py-12 md:py-20 bg-white relative hidden">
         <div class="max-w-7xl mx-auto px-lg">
             <div class="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
                 <!-- Info Column (Diagnostics) - Abajo en móvil -->
