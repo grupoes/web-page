@@ -226,6 +226,31 @@
         .animate-pointing-down {
             animation: pointing-down 0.8s ease-in-out infinite;
         }
+
+        /* Animación Pulso para el Botón de WhatsApp */
+        @keyframes pulse-whatsapp {
+            0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            50% { transform: scale(1.05); opacity: 0.85; box-shadow: 0 0 20px 10px rgba(37, 211, 102, 0); }
+        }
+        .animate-pulse-whatsapp {
+            animation: pulse-whatsapp 2s infinite ease-in-out;
+        }
+
+        /* Animación Intermitente para la Flecha (Aparecer/Desaparecer) */
+        @keyframes arrow-intermittent {
+            0%, 20% { opacity: 0; visibility: hidden; }
+            30%, 90% { opacity: 1; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+        
+        /* Combinación de Animaciones para que no se cancelen */
+        .animate-combined-down {
+            animation: pointing-down 0.8s ease-in-out infinite, arrow-intermittent 6s infinite ease-in-out;
+        }
+        .animate-combined-left {
+            animation: pointing-left 0.8s ease-in-out infinite, arrow-intermittent 6s infinite ease-in-out;
+        }
+
         /* Animación: Deslizamiento Suave (Siguiente) */
         @keyframes slideInRight {
             0% {
@@ -576,25 +601,24 @@
                     <!-- Buttons -->
                     <div class="flex flex-col sm:flex-row gap-4 pt-2">
                         <div class="relative w-full sm:w-auto">
-                            <!-- Flecha indicadora Responsiva -->
+                            <!-- Flecha indicadora Responsiva (SVG Curvo y Grueso) - Intermitente -->
                             <div id="whatsapp-arrow" class="absolute hidden z-30 pointer-events-none 
-                                /* Móvil: Arriba izquierda apuntando abajo */
-                                -top-20 left-0 flex flex-col items-start animate-pointing-down
-                                /* Escritorio: Derecha centro (fuera del botón) apuntando izquierda */
-                                md:top-1/2 md:left-full md:right-auto md:bottom-auto md:-translate-y-1/2 md:flex-row md:items-center md:gap-3 md:animate-pointing-left">
+                                /* Móvil: Arriba izquierda */
+                                -top-24 left-0 flex flex-col items-start animate-combined-down
+                                /* Escritorio: Derecha centro */
+                                md:top-1/2 md:left-full md:right-auto md:bottom-auto md:-translate-y-1/2 md:flex-row md:items-center md:gap-3 md:animate-combined-left">
                                 
-                                <!-- Icono South (Móvil) - Aparece abajo del texto -->
-                                <span class="material-symbols-outlined text-[#25D366] text-5xl drop-shadow-md md:hidden order-2" style="font-variation-settings: 'wght' 700;">south</span>
+                                <!-- SVG Flecha Curva (Se rota en móvil) -->
+                                <svg class="w-16 h-16 text-[#25D366] drop-shadow-lg -rotate-90 md:rotate-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M80 20C80 20 70 50 25 50M25 50L45 30M25 50L45 70" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                                 
-                                <!-- Icono West (Escritorio) - Aparece a la izquierda del texto -->
-                                <span class="material-symbols-outlined text-[#25D366] text-5xl drop-shadow-md hidden md:block order-1" style="font-variation-settings: 'wght' 700;">west</span>
-                                
-                                <span class="bg-primary text-white text-[11px] font-black px-4 py-2 rounded-full uppercase tracking-widest whitespace-nowrap shadow-lg order-1 md:order-2">¡Conversemos ahora!</span>
+                                <span class="bg-primary text-white text-[11px] font-black px-4 py-2 rounded-full uppercase tracking-widest whitespace-nowrap shadow-lg -mt-4 md:mt-0">¡Conversemos ahora!</span>
                             </div>
 
                             <a
                                 id="btn-whatsapp"
-                                class="bg-[#25D366] text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-[#25D366]/20 hover:shadow-[#25D366]/40 transition-all flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95 w-full"
+                                class="bg-[#25D366] text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-[#25D366]/20 hover:shadow-[#25D366]/40 transition-all flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95 w-full animate-pulse-whatsapp"
                                 href="https://wa.me/+51976443266"
                                 target="_blank">
                                 <span class="material-symbols-outlined">chat</span>
