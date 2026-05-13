@@ -219,13 +219,13 @@
             animation: pointing-left 0.8s ease-in-out infinite;
         }
 
-        /* Animación para Móvil (Abajo a Arriba) */
-        @keyframes pointing-up {
-            0%, 100% { transform: translateY(10px); }
-            50% { transform: translateY(-5px); }
+        /* Animación para Móvil (Arriba a Abajo) */
+        @keyframes pointing-down {
+            0%, 100% { transform: translateY(-10px); }
+            50% { transform: translateY(5px); }
         }
-        .animate-pointing-up {
-            animation: pointing-up 0.8s ease-in-out infinite;
+        .animate-pointing-down {
+            animation: pointing-down 0.8s ease-in-out infinite;
         }
     </style>
 </head>
@@ -551,16 +551,18 @@
                         <div class="relative w-full sm:w-auto">
                             <!-- Flecha indicadora Responsiva -->
                             <div id="whatsapp-arrow" class="absolute hidden z-30 pointer-events-none 
-                                /* Móvil: Abajo izquierda apuntando arriba */
-                                -bottom-20 left-0 flex-col items-start animate-pointing-up
+                                /* Móvil: Arriba izquierda apuntando abajo */
+                                -top-20 left-0 flex flex-col items-start animate-pointing-down
                                 /* Escritorio: Derecha centro apuntando izquierda */
                                 md:top-1/2 md:right-0 md:bottom-auto md:left-auto md:-translate-y-1/2 md:flex-row md:items-center md:gap-3 md:animate-pointing-left">
                                 
-                                <!-- Icono que cambia según pantalla -->
-                                <span class="material-symbols-outlined text-[#25D366] text-5xl drop-shadow-md md:hidden" style="font-variation-settings: 'wght' 700;">north</span>
-                                <span class="material-symbols-outlined text-[#25D366] text-5xl drop-shadow-md hidden md:block" style="font-variation-settings: 'wght' 700;">west</span>
+                                <!-- Icono South (Móvil) - Aparece abajo del texto -->
+                                <span class="material-symbols-outlined text-[#25D366] text-5xl drop-shadow-md md:hidden order-2" style="font-variation-settings: 'wght' 700;">south</span>
                                 
-                                <span class="bg-primary text-white text-[11px] font-black px-4 py-2 rounded-full uppercase tracking-widest whitespace-nowrap shadow-lg">¡Conversemos ahora!</span>
+                                <!-- Icono West (Escritorio) - Aparece a la izquierda del texto -->
+                                <span class="material-symbols-outlined text-[#25D366] text-5xl drop-shadow-md hidden md:block order-1" style="font-variation-settings: 'wght' 700;">west</span>
+                                
+                                <span class="bg-primary text-white text-[11px] font-black px-4 py-2 rounded-full uppercase tracking-widest whitespace-nowrap shadow-lg order-1 md:order-2">¡Conversemos ahora!</span>
                             </div>
 
                             <a
