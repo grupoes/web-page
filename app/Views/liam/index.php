@@ -357,6 +357,22 @@
         .animate-enter-left {
             animation: slideInLeft 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         }
+
+        /* Animación: Aparecer desde abajo (Más estable para móvil) */
+        @keyframes slideInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-enter-up {
+            animation: slideInUp 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
     </style>
 </head>
 
@@ -611,13 +627,13 @@
     </section>
     <!-- Section 4.5: POST-QUIZ NAME REQUEST -->
     <section id="name-step" class="h-screen h-[100dvh] flex items-center bg-white hidden relative overflow-hidden">
-        <div class="max-w-xl mx-auto px-lg text-center relative z-10">
+        <div class="max-w-xl w-full mx-auto px-lg text-center relative z-10">
             <div class="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full mb-6">
                 <span class="material-symbols-outlined text-primary text-sm">stars</span>
                 <span class="text-primary text-xs font-bold uppercase tracking-wider">Análisis Finalizado</span>
             </div>
-            <h2 class="font-display-lg text-4xl text-primary mb-6 leading-tight">¡Excelente trabajo!</h2>
-            <p class="text-on-surface-variant text-lg mb-10 leading-relaxed">He procesado tus respuestas. ¿Te gustaría que personalice tu reporte final con tu nombre?</p>
+            <h2 class="font-display-lg text-3xl md:text-4xl text-primary mb-4 md:mb-6 leading-tight">¡Excelente trabajo!</h2>
+            <p class="text-on-surface-variant text-base md:text-lg mb-6 md:mb-10 leading-relaxed">He procesado tus respuestas. ¿Te gustaría que personalice tu reporte final con tu nombre?</p>
 
             <div id="name-choice-container" class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
                 <button id="btn-name-yes" class="flex-1 bg-primary text-white font-bold px-8 py-4 rounded-2xl shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-2">
@@ -629,15 +645,15 @@
                 </button>
             </div>
 
-            <div id="name-input-container" class="hidden space-y-6 animate-enter-right">
+            <div id="name-input-container" class="hidden space-y-4 md:space-y-6 animate-enter-up">
                 <div class="space-y-2">
                     <input
                         id="input-nombre"
-                        class="w-full rounded-2xl border-slate-200 bg-slate-50 focus:bg-white focus:ring-4 focus:ring-brand-blue-light/10 focus:border-brand-blue-light py-5 px-6 text-center text-xl font-medium transition-all"
+                        class="w-full rounded-2xl border-slate-200 bg-slate-50 focus:bg-white focus:ring-4 focus:ring-brand-blue-light/10 focus:border-brand-blue-light py-4 md:py-5 px-6 text-center text-lg md:text-xl font-medium transition-all"
                         placeholder="Escribe tu nombre completo"
                         type="text" />
                 </div>
-                <button id="btn-final-results" class="w-full bg-brand-green text-primary font-bold py-5 rounded-2xl shadow-xl shadow-brand-green/20 hover:shadow-brand-green/40 transition-all flex items-center justify-center gap-3 text-lg">
+                <button id="btn-final-results" class="w-full bg-brand-green text-primary font-bold py-4 md:py-5 rounded-2xl shadow-xl shadow-brand-green/20 hover:shadow-brand-green/40 transition-all flex items-center justify-center gap-3 text-base md:text-lg">
                     Generar Reporte Personalizado
                     <span class="material-symbols-outlined">arrow_forward</span>
                 </button>
@@ -653,7 +669,7 @@
         id="results-section"
         class="py-12 md:py-20 bg-white relative hidden">
         <div class="max-w-7xl mx-auto px-lg">
-            <div class="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="grid lg:grid-cols-2 gap-4 lg:gap-20 items-center">
                 <!-- Info Column (Diagnostics) - Abajo en móvil -->
                 <div class="space-y-8 order-2 lg:order-1">
                     <!-- Badge & Title -->
@@ -731,7 +747,7 @@
                 </div>
 
                 <!-- Visual Side (Score) - Arriba en móvil -->
-                <div class="flex flex-col items-center justify-center relative order-1 lg:order-2 mb-8 lg:mb-0">
+                <div class="flex flex-col items-center justify-center relative order-1 lg:order-2 mb-2 lg:mb-0">
                     <div class="relative w-56 h-56 md:w-80 md:h-80 flex items-center justify-center">
                         <!-- Score Glow -->
                         <div
