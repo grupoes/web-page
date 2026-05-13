@@ -210,12 +210,22 @@
             filter: drop-shadow(0 0 12px rgba(0, 232, 174, 0.5));
         }
 
+        /* Animación para Escritorio (Derecha a Izquierda) */
         @keyframes pointing-left {
             0%, 100% { transform: translate(calc(100% + 20px), -50%); }
             50% { transform: translate(calc(100% + 5px), -50%); }
         }
         .animate-pointing-left {
             animation: pointing-left 0.8s ease-in-out infinite;
+        }
+
+        /* Animación para Móvil (Abajo a Arriba) */
+        @keyframes pointing-up {
+            0%, 100% { transform: translateY(10px); }
+            50% { transform: translateY(-5px); }
+        }
+        .animate-pointing-up {
+            animation: pointing-up 0.8s ease-in-out infinite;
         }
     </style>
 </head>
@@ -539,9 +549,17 @@
                     <!-- Buttons -->
                     <div class="flex flex-col sm:flex-row gap-4 pt-2">
                         <div class="relative w-full sm:w-auto">
-                            <!-- Flecha indicadora (Ajustada y más grande) -->
-                            <div id="whatsapp-arrow" class="absolute top-1/2 right-0 -translate-y-1/2 hidden items-center gap-3 z-30 pointer-events-none animate-pointing-left">
-                                <span class="material-symbols-outlined text-[#25D366] text-5xl drop-shadow-md" style="font-variation-settings: 'wght' 700;">west</span>
+                            <!-- Flecha indicadora Responsiva -->
+                            <div id="whatsapp-arrow" class="absolute hidden z-30 pointer-events-none 
+                                /* Móvil: Abajo izquierda apuntando arriba */
+                                -bottom-20 left-0 flex-col items-start animate-pointing-up
+                                /* Escritorio: Derecha centro apuntando izquierda */
+                                md:top-1/2 md:right-0 md:bottom-auto md:left-auto md:-translate-y-1/2 md:flex-row md:items-center md:gap-3 md:animate-pointing-left">
+                                
+                                <!-- Icono que cambia según pantalla -->
+                                <span class="material-symbols-outlined text-[#25D366] text-5xl drop-shadow-md md:hidden" style="font-variation-settings: 'wght' 700;">north</span>
+                                <span class="material-symbols-outlined text-[#25D366] text-5xl drop-shadow-md hidden md:block" style="font-variation-settings: 'wght' 700;">west</span>
+                                
                                 <span class="bg-primary text-white text-[11px] font-black px-4 py-2 rounded-full uppercase tracking-widest whitespace-nowrap shadow-lg">¡Conversemos ahora!</span>
                             </div>
 
