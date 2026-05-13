@@ -88,13 +88,15 @@
                         lg: "24px",
                     },
                     fontFamily: {
-                        "body-md": ["Inter"],
-                        "body-lg": ["Inter"],
-                        "headline-lg-mobile": ["Plus Jakarta Sans"],
-                        "display-lg": ["Plus Jakarta Sans"],
-                        "headline-md": ["Plus Jakarta Sans"],
-                        "label-bold": ["Inter"],
-                        "headline-lg": ["Plus Jakarta Sans"],
+                        display: ["Canaro", "Plus Jakarta Sans", "sans-serif"],
+                        body: ["Canaro", "Inter", "sans-serif"],
+                        "body-md": ["Canaro", "Inter", "sans-serif"],
+                        "body-lg": ["Canaro", "Inter", "sans-serif"],
+                        "headline-lg-mobile": ["Canaro", "Plus Jakarta Sans", "sans-serif"],
+                        "display-lg": ["Canaro", "Plus Jakarta Sans", "sans-serif"],
+                        "headline-md": ["Canaro", "Plus Jakarta Sans", "sans-serif"],
+                        "label-bold": ["Canaro", "Inter", "sans-serif"],
+                        "headline-lg": ["Canaro", "Plus Jakarta Sans", "sans-serif"],
                     },
                     fontSize: {
                         "body-md": ["16px", {
@@ -138,6 +140,34 @@
         };
     </script>
     <style>
+        @font-face {
+            font-family: 'Canaro';
+            src: url('<?= base_url('fonts/Canaro-Book.ttf') ?>') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Canaro';
+            src: url('<?= base_url('fonts/Canaro-Medium.ttf') ?>') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Canaro';
+            src: url('<?= base_url('fonts/Canaro-Bold.ttf') ?>') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Canaro';
+            src: url('<?= base_url('fonts/Canaro-ExtraBold.ttf') ?>') format('truetype');
+            font-weight: 800;
+            font-style: normal;
+        }
+
         .glass-nav {
             background: rgba(250, 248, 255, 0.7);
             backdrop-filter: blur(20px);
@@ -212,41 +242,84 @@
 
         /* Animación para Escritorio (Derecha a Izquierda) */
         @keyframes pointing-left {
-            0%, 100% { transform: translate(40px, -50%); }
-            50% { transform: translate(25px, -50%); }
+
+            0%,
+            100% {
+                transform: translate(40px, -50%);
+            }
+
+            50% {
+                transform: translate(25px, -50%);
+            }
         }
+
         .animate-pointing-left {
             animation: pointing-left 0.8s ease-in-out infinite;
         }
 
         @keyframes pointing-down {
-            0%, 100% { transform: translateY(-10px); }
-            50% { transform: translateY(5px); }
+
+            0%,
+            100% {
+                transform: translateY(-10px);
+            }
+
+            50% {
+                transform: translateY(5px);
+            }
         }
+
         .animate-pointing-down {
             animation: pointing-down 0.8s ease-in-out infinite;
         }
 
         /* Animación Pulso para el Botón de WhatsApp */
         @keyframes pulse-whatsapp {
-            0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
-            50% { transform: scale(1.05); opacity: 0.85; box-shadow: 0 0 20px 10px rgba(37, 211, 102, 0); }
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4);
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.85;
+                box-shadow: 0 0 20px 10px rgba(37, 211, 102, 0);
+            }
         }
+
         .animate-pulse-whatsapp {
             animation: pulse-whatsapp 2s infinite ease-in-out;
         }
 
         /* Animación Intermitente para la Flecha (Aparecer/Desaparecer) */
         @keyframes arrow-intermittent {
-            0%, 20% { opacity: 0; visibility: hidden; }
-            30%, 90% { opacity: 1; visibility: visible; }
-            100% { opacity: 0; visibility: hidden; }
+
+            0%,
+            20% {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            30%,
+            90% {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
         }
-        
+
         /* Combinación de Animaciones para que no se cancelen */
         .animate-combined-down {
             animation: pointing-down 0.8s ease-in-out infinite, arrow-intermittent 6s infinite ease-in-out;
         }
+
         .animate-combined-left {
             animation: pointing-left 0.8s ease-in-out infinite, arrow-intermittent 6s infinite ease-in-out;
         }
@@ -257,27 +330,32 @@
                 opacity: 0;
                 transform: translateX(80px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
+
         /* Animación: Deslizamiento Suave (Anterior) */
         @keyframes slideInLeft {
             0% {
                 opacity: 0;
                 transform: translateX(-80px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
-        .animate-enter-right { 
-            animation: slideInRight 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
+
+        .animate-enter-right {
+            animation: slideInRight 0.8s cubic-bezier(0.23, 0.67, 0.32, 0.67) forwards;
         }
-        .animate-enter-left { 
-            animation: slideInLeft 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; 
+
+        .animate-enter-left {
+            animation: slideInLeft 0.8s cubic-bezier(0.23, 0.67, 0.32, 0.67) forwards;
         }
     </style>
 </head>
@@ -312,11 +390,7 @@
         <div
             class="max-w-7xl mx-auto px-lg grid md:grid-cols-2 gap-xl items-center relative z-10 py-20 md:py-section text-center md:text-left">
             <div class="flex flex-col items-center md:items-start space-y-lg">
-                <!--<div
-                    class="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full border border-white/20 backdrop-blur-md">
-                    <span class="material-symbols-outlined text-brand-green text-[18px]">verified</span>
-                    <span class="text-white text-xs font-bold tracking-wide uppercase">Diagnóstico IA 2026</span>
-                </div>-->
+
                 <h1 class="font-display-lg text-4xl md:text-display-lg text-white leading-tight md:leading-[1.1]">
                     DIAGNÓSTICA
                     <span class="text-brand-green italic relative">TÚ TESIS<svg
@@ -365,14 +439,10 @@
                 </div>
             </div>
         </div>
-        <div
-            class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/30 flex flex-col items-center gap-2">
-            <span class="text-[10px] uppercase tracking-[0.2em] font-bold">Scroll</span>
-            <span class="material-symbols-outlined animate-bounce">keyboard_arrow_down</span>
-        </div>
+
     </section>
     <!-- Section 2: INITIAL DATA -->
-    <section class="py-16 md:py-section bg-[#F8FAFF] relative z-20" id="paso-1">
+    <section class="py-16 md:py-section bg-[#F8FAFF] relative z-20 hidden" id="paso-1">
         <div class="max-w-3xl mx-auto px-lg">
             <div
                 class="w-full bg-slate-200 h-2 rounded-full mb-xl overflow-hidden p-0.5">
@@ -607,12 +677,12 @@
                                 -top-24 left-0 flex flex-col items-start animate-combined-down
                                 /* Escritorio: Derecha centro */
                                 md:top-1/2 md:left-full md:right-auto md:bottom-auto md:-translate-y-1/2 md:flex-row md:items-center md:gap-3 md:animate-combined-left">
-                                
+
                                 <!-- SVG Flecha Curva (Se rota en móvil) -->
                                 <svg class="w-16 h-16 text-[#25D366] drop-shadow-lg -rotate-90 md:rotate-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M80 20C80 20 70 50 25 50M25 50L45 30M25 50L45 70" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M80 20C80 20 70 50 25 50M25 50L45 30M25 50L45 70" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
-                                
+
                                 <span class="bg-primary text-white text-[11px] font-black px-4 py-2 rounded-full uppercase tracking-widest whitespace-nowrap shadow-lg -mt-4 md:mt-0">¡Conversemos ahora!</span>
                             </div>
 
@@ -621,7 +691,9 @@
                                 class="bg-[#25D366] text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-[#25D366]/20 hover:shadow-[#25D366]/40 transition-all flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95 w-full animate-pulse-whatsapp"
                                 href="https://wa.me/+51976443266"
                                 target="_blank">
-                                <span class="material-symbols-outlined">chat</span>
+                                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                                </svg>
                                 Conversar por WhatsApp
                             </a>
                         </div>
@@ -696,92 +768,7 @@
             </div>
         </div>
     </section>
-    <!-- Footer -->
-    <footer class="bg-primary pt-24 pb-12 relative overflow-hidden">
-        <div
-            class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[300px] bg-brand-blue-light/10 rounded-full blur-[150px] -mt-40"></div>
-        <div class="max-w-7xl mx-auto px-lg relative z-10">
-            <div
-                class="flex flex-col md:flex-row justify-between items-start gap-12 pb-16 border-b border-white/10">
-                <div class="space-y-6">
-                    <img
-                        alt="ES Consultores White"
-                        class="h-10 w-auto brightness-0 invert"
-                        src="<?= base_url('assets/img/logo-dark.svg') ?>" />
-                    <p class="font-medium text-white/50 max-w-xs leading-relaxed">
-                        Elevando los estándares de la investigación académica con
-                        tecnología de última generación.
-                    </p>
-                    <div class="flex gap-4">
-                        <a
-                            class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all"
-                            href="#"><span class="material-symbols-outlined text-white text-sm">share</span></a>
-                        <a
-                            class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white/10 transition-all"
-                            href="#"><span class="material-symbols-outlined text-white text-sm">mail</span></a>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
-                    <div class="space-y-4">
-                        <h5
-                            class="text-white font-bold text-sm tracking-widest uppercase">
-                            Producto
-                        </h5>
-                        <ul class="space-y-3 text-white/40 text-sm">
-                            <li>
-                                <a class="hover:text-brand-green transition-colors" href="#">Diagnóstico</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="space-y-4">
-                        <h5
-                            class="text-white font-bold text-sm tracking-widest uppercase">
-                            Legal
-                        </h5>
-                        <ul class="space-y-3 text-white/40 text-sm">
-                            <li>
-                                <a class="hover:text-brand-green transition-colors" href="#">Privacidad</a>
-                            </li>
-                            <li>
-                                <a class="hover:text-brand-green transition-colors" href="#">Términos</a>
-                            </li>
-                            <li>
-                                <a class="hover:text-brand-green transition-colors" href="#">Cookies</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="space-y-4 col-span-2 md:col-span-1">
-                        <h5
-                            class="text-white font-bold text-sm tracking-widest uppercase">
-                            Correo electrónico
-                        </h5>
-                        <div class="flex gap-2">
-                            <input
-                                class="bg-white/5 border-white/10 rounded-lg py-2 px-4 text-white text-sm w-full focus:ring-brand-green focus:border-brand-green"
-                                placeholder="Email"
-                                type="email" />
-                            <button class="bg-brand-green p-2 rounded-lg text-primary">
-                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-white/30 text-xs font-medium">
-                    © 2026 ES Consultores - Expertos en Metodología Académica.
-                    Todos los derechos reservados.
-                </p>
-                <div
-                    class="flex gap-8 text-[10px] font-bold text-white/30 tracking-widest uppercase">
-                    <a class="hover:text-white transition-colors" href="#">LinkedIn</a>
-                    <a class="hover:text-white transition-colors" href="#">Instagram</a>
-                    <a class="hover:text-white transition-colors" href="#">Twitter</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+
     <script>
         const questions = [{
                 q: "1. ¿Tu tema está dentro de la línea de investigación de tu carrera?",
@@ -884,7 +871,7 @@
 
         function updateQuizUI(animate = false, direction = 'next') {
             const card = document.getElementById("question-card");
-            
+
             if (animate) {
                 // Reiniciar y seleccionar animación (Efecto Libro)
                 card.classList.remove("animate-enter-right", "animate-enter-left");
@@ -1105,8 +1092,17 @@
                     updateQuizUI(true, 'prev');
                 }
             });
-
-
+        // Revelar Paso 1 al iniciar
+        document.querySelectorAll('a[href="#paso-1"]').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const paso1 = document.getElementById('paso-1');
+                paso1.classList.remove('hidden');
+                paso1.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 
