@@ -254,7 +254,7 @@
         }
 
         .animate-pointing-left {
-            animation: pointing-left 0.8s ease-in-out infinite;
+            animation: pointing-left 0.4s ease-in-out infinite;
         }
 
         @keyframes pointing-down {
@@ -317,11 +317,11 @@
 
         /* Combinación de Animaciones para que no se cancelen */
         .animate-combined-down {
-            animation: pointing-down 0.8s ease-in-out infinite, arrow-intermittent 6s infinite ease-in-out;
+            animation: pointing-down 0.5s ease-in-out infinite, arrow-intermittent 6s infinite ease-in-out;
         }
 
         .animate-combined-left {
-            animation: pointing-left 0.8s ease-in-out infinite, arrow-intermittent 6s infinite ease-in-out;
+            animation: pointing-left 0.5s ease-in-out infinite, arrow-intermittent 6s infinite ease-in-out;
         }
 
         /* Animación: Deslizamiento Suave (Siguiente) */
@@ -351,11 +351,11 @@
         }
 
         .animate-enter-right {
-            animation: slideInRight 0.8s cubic-bezier(0.23, 0.67, 0.32, 0.67) forwards;
+            animation: slideInRight 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         }
 
         .animate-enter-left {
-            animation: slideInLeft 0.8s cubic-bezier(0.23, 0.67, 0.32, 0.67) forwards;
+            animation: slideInLeft 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         }
     </style>
 </head>
@@ -653,9 +653,10 @@
         class="py-12 md:py-20 bg-white relative overflow-hidden hidden">
         <div class="max-w-7xl mx-auto px-lg">
             <div class="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
-                <div class="space-y-8">
+                <!-- Info Column (Diagnostics) - Abajo en móvil -->
+                <div class="space-y-8 order-2 lg:order-1">
                     <!-- Badge & Title -->
-                    <div class="space-y-4">
+                    <div class="space-y-4 text-center lg:text-left">
                         <div
                             class="inline-flex items-center gap-2 bg-brand-green/10 text-brand-green px-4 py-1.5 rounded-full border border-brand-green/20 transition-all"
                             id="result-badge-container">
@@ -665,7 +666,7 @@
                                 id="result-badge-text">Análisis Finalizado</span>
                         </div>
                         <h2
-                            class="font-display-lg text-headline-lg text-primary leading-tight md:text-5xl tracking-tighter"
+                            class="font-display-lg text-3xl text-primary leading-tight md:text-5xl tracking-tighter"
                             id="result-title">
                             Tu tesis tiene un <span class="text-brand-green">potencial sólido</span>
                         </h2>
@@ -728,9 +729,9 @@
                     </div>
                 </div>
 
-                <!-- Visual Side -->
-                <div class="flex flex-col items-center justify-center relative">
-                    <div class="relative w-64 h-64 md:w-96 md:h-96 flex items-center justify-center">
+                <!-- Visual Side (Score) - Arriba en móvil -->
+                <div class="flex flex-col items-center justify-center relative order-1 lg:order-2 mb-8 lg:mb-0">
+                    <div class="relative w-56 h-56 md:w-80 md:h-80 flex items-center justify-center">
                         <!-- Score Glow -->
                         <div
                             class="absolute inset-0 bg-brand-green/10 rounded-full blur-[60px] animate-pulse"
@@ -958,10 +959,10 @@
             const buttons = document.querySelectorAll("#options-container button");
             buttons.forEach(btn => btn.style.pointerEvents = "none");
 
-            // Avance automático tras 1000ms (1 segundo) para mayor calma
+            // Avance automático tras 400ms para mayor agilidad
             setTimeout(() => {
                 handleNext();
-            }, 1000);
+            }, 400);
         }
 
         function handleNext() {
@@ -1005,7 +1006,7 @@
             document.getElementById("results-section").scrollIntoView({
                 behavior: "smooth"
             });
-            
+
             // Renderizar con el puntaje guardado
             renderResultsUI(window.finalScore);
         }
