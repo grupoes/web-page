@@ -209,6 +209,14 @@
         .glow-circle {
             filter: drop-shadow(0 0 12px rgba(0, 232, 174, 0.5));
         }
+
+        @keyframes pointing-left {
+            0%, 100% { transform: translate(calc(100% + 20px), -50%); }
+            50% { transform: translate(calc(100% + 5px), -50%); }
+        }
+        .animate-pointing-left {
+            animation: pointing-left 0.8s ease-in-out infinite;
+        }
     </style>
 </head>
 
@@ -415,11 +423,7 @@
                         disabled>
                         Regresar
                     </button>
-                    <button
-                        id="btn-next"
-                        class="bg-primary text-white px-10 py-4 rounded-full font-bold shadow-xl shadow-primary/20 hover:shadow-primary/30 hover:-translate-y-0.5 transition-all active:scale-95 hidden">
-                        Siguiente paso
-                    </button>
+                    <div id="btn-next" class="hidden"></div>
                 </div>
             </div>
         </div>
@@ -534,14 +538,22 @@
 
                     <!-- Buttons -->
                     <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                        <a
-                            class="bg-[#25D366] text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-[#25D366]/20 hover:shadow-[#25D366]/40 transition-all flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95"
-                            href="https://wa.me/+51976443266"
-                            target="_blank">
-                            <span class="material-symbols-outlined">chat</span>
-                            Conversar por WhatsApp
-                        </a>
+                        <div class="relative w-full sm:w-auto">
+                            <!-- Flecha indicadora (Ajustada y más grande) -->
+                            <div id="whatsapp-arrow" class="absolute top-1/2 right-0 -translate-y-1/2 hidden items-center gap-3 z-30 pointer-events-none animate-pointing-left">
+                                <span class="material-symbols-outlined text-[#25D366] text-5xl drop-shadow-md" style="font-variation-settings: 'wght' 700;">west</span>
+                                <span class="bg-primary text-white text-[11px] font-black px-4 py-2 rounded-full uppercase tracking-widest whitespace-nowrap shadow-lg">¡Conversemos ahora!</span>
+                            </div>
 
+                            <a
+                                id="btn-whatsapp"
+                                class="bg-[#25D366] text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-[#25D366]/20 hover:shadow-[#25D366]/40 transition-all flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95 w-full"
+                                href="https://wa.me/+51976443266"
+                                target="_blank">
+                                <span class="material-symbols-outlined">chat</span>
+                                Conversar por WhatsApp
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -828,19 +840,7 @@
                 container.appendChild(btn);
             });
 
-            // Update Next Button
-            const btnNext = document.getElementById("btn-next");
-            if (savedAnswer !== undefined) {
-                btnNext.classList.remove("hidden");
-            } else {
-                btnNext.classList.add("hidden");
-            }
-
-            if (currentQuestionIndex === questions.length - 1) {
-                btnNext.innerText = "Finalizar";
-            } else {
-                btnNext.innerText = "Siguiente paso";
-            }
+            // Next Button logic removed for automatic progression
 
             // Update Prev Button
             const btnPrev = document.getElementById("btn-prev");
@@ -856,6 +856,15 @@
         function selectOption(index) {
             answers[currentQuestionIndex] = index;
             updateQuizUI();
+
+            // Deshabilitar clics temporales para evitar doble selección
+            const buttons = document.querySelectorAll("#options-container button");
+            buttons.forEach(btn => btn.style.pointerEvents = "none");
+
+            // Avance automático tras 500ms para permitir ver la selección
+            setTimeout(() => {
+                handleNext();
+            }, 500);
         }
 
         function handleNext() {
@@ -960,9 +969,17 @@
                 res.color;
             document.getElementById("result-cta-card").style.borderLeftColor =
                 res.color;
-            document.getElementById("result-icon").style.color = res.color;
             document.getElementById("result-icon-container").style.backgroundColor =
                 res.color + "10";
+
+            // Mostrar flecha indicadora de WhatsApp tras 2 segundos
+            setTimeout(() => {
+                const arrow = document.getElementById("whatsapp-arrow");
+                if (arrow) {
+                    arrow.classList.remove("hidden");
+                    arrow.classList.add("flex");
+                }
+            }, 2000);
         }
 
         document
@@ -1007,7 +1024,7 @@
                 }
             });
 
-        document.getElementById("btn-next").addEventListener("click", handleNext);
+
     </script>
 </body>
 
