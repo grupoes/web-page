@@ -212,14 +212,13 @@
 
         /* Animación para Escritorio (Derecha a Izquierda) */
         @keyframes pointing-left {
-            0%, 100% { transform: translate(calc(100% + 20px), -50%); }
-            50% { transform: translate(calc(100% + 5px), -50%); }
+            0%, 100% { transform: translate(40px, -50%); }
+            50% { transform: translate(25px, -50%); }
         }
         .animate-pointing-left {
             animation: pointing-left 0.8s ease-in-out infinite;
         }
 
-        /* Animación para Móvil (Arriba a Abajo) */
         @keyframes pointing-down {
             0%, 100% { transform: translateY(-10px); }
             50% { transform: translateY(5px); }
@@ -227,6 +226,18 @@
         .animate-pointing-down {
             animation: pointing-down 0.8s ease-in-out infinite;
         }
+        /* Animación: Entrar por la Derecha (Siguiente) */
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        /* Animación: Entrar por la Izquierda (Anterior) */
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .animate-enter-right { animation: slideInRight 0.4s ease-out forwards; }
+        .animate-enter-left { animation: slideInLeft 0.4s ease-out forwards; }
     </style>
 </head>
 
@@ -553,8 +564,8 @@
                             <div id="whatsapp-arrow" class="absolute hidden z-30 pointer-events-none 
                                 /* Móvil: Arriba izquierda apuntando abajo */
                                 -top-20 left-0 flex flex-col items-start animate-pointing-down
-                                /* Escritorio: Derecha centro apuntando izquierda */
-                                md:top-1/2 md:right-0 md:bottom-auto md:left-auto md:-translate-y-1/2 md:flex-row md:items-center md:gap-3 md:animate-pointing-left">
+                                /* Escritorio: Derecha centro (fuera del botón) apuntando izquierda */
+                                md:top-1/2 md:left-full md:right-auto md:bottom-auto md:-translate-y-1/2 md:flex-row md:items-center md:gap-3 md:animate-pointing-left">
                                 
                                 <!-- Icono South (Móvil) - Aparece abajo del texto -->
                                 <span class="material-symbols-outlined text-[#25D366] text-5xl drop-shadow-md md:hidden order-2" style="font-variation-settings: 'wght' 700;">south</span>
@@ -829,8 +840,18 @@
 
         let currentQuestionIndex = 0;
         let answers = [];
+        let lastQuestionIndex = -1;
 
-        function updateQuizUI() {
+        function updateQuizUI(animate = false, direction = 'next') {
+            const card = document.getElementById("question-card");
+            
+            if (animate) {
+                // Reiniciar y seleccionar animación según lo solicitado (Slide In Left para 'next')
+                card.classList.remove("animate-enter-right", "animate-enter-left");
+                void card.offsetWidth; // Forzar reflujo
+                card.classList.add(direction === 'next' ? "animate-enter-left" : "animate-enter-right");
+            }
+
             const q = questions[currentQuestionIndex];
             document.getElementById("question-text").innerText = q.q;
             document.getElementById("question-counter").innerText =
@@ -875,13 +896,14 @@
 
         function selectOption(index) {
             answers[currentQuestionIndex] = index;
-            updateQuizUI();
+            // Actualizar sin animar para que se vea la selección de inmediato
+            updateQuizUI(false);
 
             // Deshabilitar clics temporales para evitar doble selección
             const buttons = document.querySelectorAll("#options-container button");
             buttons.forEach(btn => btn.style.pointerEvents = "none");
 
-            // Avance automático tras 500ms para permitir ver la selección
+            // Avance automático tras 500ms
             setTimeout(() => {
                 handleNext();
             }, 500);
@@ -890,7 +912,7 @@
         function handleNext() {
             if (currentQuestionIndex < questions.length - 1) {
                 currentQuestionIndex++;
-                updateQuizUI();
+                updateQuizUI(true, 'next');
             } else {
                 finishQuiz();
             }
@@ -1032,7 +1054,7 @@
                     .scrollIntoView({
                         behavior: "smooth"
                     });
-                updateQuizUI();
+                updateQuizUI(true, 'next');
             });
 
         document
@@ -1040,7 +1062,7 @@
             .addEventListener("click", function() {
                 if (currentQuestionIndex > 0) {
                     currentQuestionIndex--;
-                    updateQuizUI();
+                    updateQuizUI(true, 'prev');
                 }
             });
 
