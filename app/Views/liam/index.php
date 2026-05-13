@@ -380,6 +380,7 @@
     </div>
     <!-- Section 1: HERO -->
     <section
+        id="hero-section"
         class="hero-gradient h-screen h-[100dvh] flex items-center relative overflow-hidden">
         <div class="absolute inset-0 overflow-hidden pointer-events-none">
             <div
@@ -498,7 +499,7 @@
     <!-- Section 3: INTERACTIVE QUIZ -->
     <section
         id="quiz-section"
-        class="py-12 bg-slate-50 border-y border-slate-100 hidden">
+        class="h-screen h-[100dvh] flex items-center bg-[#F8FAFF] hidden relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-lg">
             <div class="flex justify-between items-center mb-6">
                 <div class="flex items-center gap-3">
@@ -609,7 +610,7 @@
         </div>
     </section>
     <!-- Section 4.5: POST-QUIZ NAME REQUEST -->
-    <section id="name-step" class="py-20 bg-white hidden relative overflow-hidden">
+    <section id="name-step" class="py-10 md:py-20 bg-white hidden relative overflow-hidden">
         <div class="max-w-xl mx-auto px-lg text-center relative z-10">
             <div class="inline-flex items-center gap-2 bg-primary/5 px-4 py-2 rounded-full mb-6">
                 <span class="material-symbols-outlined text-primary text-sm">stars</span>
@@ -666,7 +667,7 @@
                                 id="result-badge-text">Análisis Finalizado</span>
                         </div>
                         <h2
-                            class="font-display-lg text-3xl text-primary leading-tight md:text-5xl tracking-tighter"
+                            class="font-display-lg text-2xl sm:text-3xl lg:text-5xl text-primary leading-tight tracking-tighter break-words"
                             id="result-title">
                             Tu tesis tiene un <span class="text-brand-green">potencial sólido</span>
                         </h2>
@@ -1107,10 +1108,14 @@
 
                 if (hasError) return;
 
-                document.getElementById("quiz-section").classList.remove("hidden");
-                document.getElementById("quiz-section").scrollIntoView({
-                    behavior: "smooth"
-                });
+                document.getElementById("paso-1").classList.add("hidden"); // Ocultar solo Paso 1
+                const quizSection = document.getElementById("quiz-section");
+                quizSection.classList.remove("hidden");
+                
+                // Desplazar al quiz y luego bloquear scroll
+                quizSection.scrollIntoView({ behavior: 'auto' });
+                document.body.classList.add("overflow-hidden"); 
+                
                 updateQuizUI(true, 'next');
             });
 
