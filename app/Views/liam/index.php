@@ -373,6 +373,15 @@
         .animate-enter-up {
             animation: slideInUp 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         }
+
+        /* Animación de crecimiento y encogimiento para el botón flotante */
+        @keyframes pulse-growing {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); box-shadow: 0 0 30px 10px rgba(37, 211, 102, 0.4); }
+        }
+        .animate-pulse-growing {
+            animation: pulse-growing 2s infinite ease-in-out;
+        }
     </style>
 </head>
 
@@ -664,10 +673,23 @@
         <div class="absolute bottom-0 left-0 w-64 h-64 bg-brand-blue-light/5 rounded-full blur-3xl -ml-32 -mb-32"></div>
     </section>
 
+    </section>
+
+    <!-- Botón de WhatsApp Flotante (Solo en Móvil) -->
+    <a id="floating-whatsapp" 
+       href="https://wa.me/+51976443266" 
+       target="_blank" 
+       class="fixed bottom-8 left-8 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-2xl hidden md:!hidden animate-pulse-growing transition-all hover:scale-125 active:scale-90 group">
+        <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+        <span class="absolute left-full ml-4 bg-primary text-white text-[10px] font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">¡Conversar ahora!</span>
+    </a>
+
     <!-- Section 5: RESULTS -->
     <section
         id="results-section"
-        class="py-12 md:py-20 bg-white relative hidden">
+        class="min-h-screen py-12 md:py-20 bg-white relative hidden">
         <div class="max-w-7xl mx-auto px-lg">
             <div class="grid lg:grid-cols-2 gap-4 lg:gap-20 items-center">
                 <!-- Info Column (Diagnostics) - Abajo en móvil -->
@@ -717,12 +739,10 @@
                     <!-- Buttons -->
                     <div class="flex flex-col sm:flex-row gap-4 pt-2">
                         <div class="relative w-full sm:w-auto">
-                            <!-- Flecha indicadora Responsiva (SVG Curvo y Grueso) - Intermitente -->
-                            <div id="whatsapp-arrow" class="absolute hidden z-30 pointer-events-none 
-                                /* Móvil: Arriba izquierda */
-                                -top-24 left-0 flex flex-col items-start animate-combined-down
+                            <!-- Flecha indicadora Responsiva (Solo Desktop) - Intermitente -->
+                            <div id="whatsapp-arrow" class="absolute hidden md:flex z-30 pointer-events-none 
                                 /* Escritorio: Derecha centro */
-                                md:top-1/2 md:left-full md:right-auto md:bottom-auto md:-translate-y-1/2 md:flex-row md:items-center md:gap-3 md:animate-combined-left">
+                                md:top-1/2 md:left-full md:right-auto md:bottom-auto md:-translate-y-1/2 md:items-center md:gap-3 md:animate-combined-left">
 
                                 <!-- SVG Flecha Curva (Se rota en móvil) -->
                                 <svg class="w-16 h-16 text-[#25D366] drop-shadow-lg -rotate-90 md:rotate-0" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -734,7 +754,7 @@
 
                             <a
                                 id="btn-whatsapp"
-                                class="bg-[#25D366] text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-[#25D366]/20 hover:shadow-[#25D366]/40 transition-all flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95 w-full animate-pulse-whatsapp"
+                                class="hidden md:flex bg-[#25D366] text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-[#25D366]/20 hover:shadow-[#25D366]/40 transition-all items-center justify-center gap-3 hover:-translate-y-1 active:scale-95 w-full animate-pulse-whatsapp"
                                 href="https://wa.me/+51976443266"
                                 target="_blank">
                                 <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1020,6 +1040,13 @@
         function displayResults() {
             document.getElementById("name-step").classList.add("hidden");
             document.body.classList.remove("overflow-hidden"); // Desbloquear scroll
+            
+            // Mostrar botón flotante de WhatsApp solo en Móvil
+                const floatingWA = document.getElementById("floating-whatsapp");
+                if (floatingWA && window.innerWidth < 768) {
+                    floatingWA.classList.remove("hidden");
+                }
+
             document.getElementById("results-section").classList.remove("hidden");
             document.getElementById("results-section").scrollIntoView({
                 behavior: "smooth"
@@ -1099,10 +1126,10 @@
             document.getElementById("result-icon-container").style.backgroundColor =
                 res.color + "10";
 
-            // Mostrar flecha indicadora de WhatsApp tras 2 segundos
+            // Mostrar flecha indicadora de WhatsApp tras 2 segundos solo en Desktop
             setTimeout(() => {
                 const arrow = document.getElementById("whatsapp-arrow");
-                if (arrow) {
+                if (arrow && window.innerWidth >= 768) {
                     arrow.classList.remove("hidden");
                     arrow.classList.add("flex");
                 }
@@ -1159,16 +1186,69 @@
             displayResults();
         });
 
+        function resetQuiz() {
+            // 1. Resetear variables lógicas
+            currentQuestionIndex = 0;
+            score = 0;
+            window.finalScore = 0;
+            answers = []; // LIMPIEZA TOTAL DE RESPUESTAS (Corregido)
+
+            // 2. Limpiar UI de secciones
+            const sections = ["quiz-section", "transition-section", "name-step", "results-section"];
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add("hidden");
+            });
+            
+            document.getElementById("name-input-container").classList.add("hidden");
+            document.getElementById("name-choice-container").classList.remove("hidden");
+            
+            // Forzar limpieza del contenedor
+            const optionsContainer = document.getElementById("options-container");
+            if (optionsContainer) optionsContainer.innerHTML = "";
+            
+            // 3. Limpiar inputs y errores de validación
+            const nivelSelect = document.getElementById("select-nivel");
+            const nombreInput = document.getElementById("input-nombre");
+            if (nivelSelect) {
+                nivelSelect.value = "";
+                nivelSelect.classList.remove("border-error", "bg-error/5");
+            }
+            if (nombreInput) nombreInput.value = "";
+            
+            // 5. Resetear barras de progreso
+            const p1Prog = document.querySelector("#paso-1 .progress-glow");
+            if (p1Prog) p1Prog.style.width = "8%";
+            
+            const quizProg = document.querySelector("#quiz-section .h-full");
+            if (quizProg) quizProg.style.width = "8%";
+
+            // 6. Resetear textos
+            const qCounter = document.getElementById("question-counter");
+            const qText = document.getElementById("question-text");
+            if (qCounter) qCounter.innerText = "Pregunta 01 de 12";
+            if (qText) qText.innerText = "";
+            
+            // Ocultar botones de contacto
+            const floatingWA = document.getElementById("floating-whatsapp");
+            if (floatingWA) floatingWA.classList.add("hidden");
+            const arrow = document.getElementById("whatsapp-arrow");
+            if (arrow) arrow.classList.add("hidden");
+        }
+
         // Revelar Paso 1 al iniciar
         document.querySelectorAll('a[href="#paso-1"]').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
-                const paso1 = document.getElementById('paso-1');
-                paso1.classList.remove('hidden');
                 
-                // Desplazar al paso 1 y bloquear scroll para que parezca otra pantalla
-                paso1.scrollIntoView({ behavior: 'auto' });
-                document.body.classList.add('overflow-hidden');
+                resetQuiz(); // Limpiar todo sin recargar
+
+                const paso1 = document.getElementById('paso-1');
+                if (paso1) {
+                    paso1.classList.remove('hidden');
+                    paso1.scrollIntoView({ behavior: 'auto' });
+                    document.body.classList.add('overflow-hidden');
+                }
             });
         });
     </script>
