@@ -536,24 +536,24 @@
         id="quiz-section"
         class="h-screen h-[100dvh] flex items-center bg-[#F8FAFF] hidden relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-lg">
-            <div class="flex justify-between items-center mb-6">
-                <div class="flex items-center gap-3">
+            <div class="flex justify-between items-center mb-6 gap-2">
+                <div class="flex items-center gap-2 min-w-0">
                     <div
-                        class="w-10 h-10 rounded-xl bg-brand-blue-light/10 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-brand-blue-light">psychology</span>
+                        class="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-brand-blue-light/10 flex items-center justify-center flex-shrink-0">
+                        <span class="material-symbols-outlined text-brand-blue-light text-xl md:text-2xl">psychology</span>
                     </div>
-                    <span id="question-counter" class="font-bold text-primary">Pregunta 01 de 12</span>
+                    <span id="question-counter" class="font-bold text-primary text-xs md:text-base whitespace-nowrap">Pregunta 01 de 12</span>
                 </div>
                 <div
-                    class="flex items-center gap-4 bg-white px-4 py-2 rounded-full shadow-sm">
-                    <div class="w-24 bg-slate-100 h-2 rounded-full overflow-hidden">
+                    class="flex items-center gap-2 md:gap-4 bg-white px-3 py-1.5 md:px-4 md:py-2 rounded-full shadow-sm flex-shrink-0">
+                    <div class="w-16 md:w-24 bg-slate-100 h-1.5 md:h-2 rounded-full overflow-hidden">
                         <div
                             id="progress-bar"
                             class="bg-brand-blue-light h-full w-[8%] rounded-full shadow-[0_0_8px_rgba(0,114,237,0.4)] transition-all duration-500"></div>
                     </div>
                     <span
                         id="progress-text"
-                        class="text-xs font-bold text-brand-blue-light">8%</span>
+                        class="text-[10px] md:text-xs font-bold text-brand-blue-light">8%</span>
                 </div>
             </div>
             <div class="space-y-6">
