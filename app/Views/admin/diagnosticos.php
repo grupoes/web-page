@@ -44,6 +44,7 @@
         background-color: #3bafda;
         color: white;
     }
+
     .list-group-item {
         overflow: visible !important;
     }
@@ -166,24 +167,7 @@
                                     </div>
                                     <div class="card-body p-0">
                                         <div id="lista-opciones" class="list-group list-group-flush">
-                                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <span class="fw-bold me-2">A)</span> Explorar un nuevo fenómeno
-                                                </div>
-                                                <div class="btn-group">
-                                                    <button class="btn btn-xs btn-link text-muted"><i class="mdi mdi-pencil"></i></button>
-                                                    <button class="btn btn-xs btn-link text-danger"><i class="mdi mdi-close"></i></button>
-                                                </div>
-                                            </div>
-                                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <span class="fw-bold me-2">B)</span> Validar una teoría existente
-                                                </div>
-                                                <div class="btn-group">
-                                                    <button class="btn btn-xs btn-link text-muted"><i class="mdi mdi-pencil"></i></button>
-                                                    <button class="btn btn-xs btn-link text-danger"><i class="mdi mdi-close"></i></button>
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -352,7 +336,7 @@
         e.preventDefault();
         const $menu = $(this).next('.dropdown-menu');
         const isVisible = $menu.hasClass('show');
-        
+
         $('.dropdown-menu').removeClass('show');
         if (!isVisible) {
             $menu.addClass('show');
@@ -389,7 +373,7 @@
         $('#lista-preguntas .list-group-item').removeClass('active');
         // Usar selector por data-id ya que la estructura cambió
         $(`[data-id="${id}"]`).addClass('active');
-        
+
         listaOpciones(id);
     }
 
@@ -397,7 +381,9 @@
         $.ajax({
             url: '<?= base_url('/listaOpciones') ?>',
             type: 'GET',
-            data: { pregunta_id: pregunta_id },
+            data: {
+                pregunta_id: pregunta_id
+            },
             dataType: 'JSON',
             success: function(response) {
                 if (response.status === 'success') {
@@ -463,7 +449,9 @@
             $.ajax({
                 url: '<?= base_url('/deleteOpcion') ?>',
                 type: 'POST',
-                data: { id: id },
+                data: {
+                    id: id
+                },
                 dataType: 'JSON',
                 success: function(response) {
                     if (response.status === 'success') {
