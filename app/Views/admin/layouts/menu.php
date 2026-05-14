@@ -27,13 +27,19 @@
     </li>
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layout" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i data-feather="layout"></i> Sedes
+            <i data-feather="airplay"></i> Sedes
         </a>
     </li>
 
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle arrow-none" href="/contactos" id="topnav-contacto">
-            <i data-feather="layout"></i> Contactos
+            <i data-feather="users"></i> Contactos
+        </a>
+    </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle arrow-none" href="/diagnosticos" id="topnav-contacto">
+            <i data-feather="activity"></i> Diagnósticos
         </a>
     </li>
 </ul>

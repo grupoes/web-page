@@ -23,6 +23,8 @@
     <!-- icons -->
     <link href="admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 
+    <?= $this->renderSection('css') ?>
+
 </head>
 
 <body class="loading" data-layout-mode="horizontal" data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": false}, "topbar": {"color": "light"}, "showRightSidebarOnPageLoad": true}'>
