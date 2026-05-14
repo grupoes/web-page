@@ -851,7 +851,7 @@
                 options: ["Sí, ya lo confirmé", "Creo que sí", "No lo sé"],
             },
             {
-                q: "2. Tu tema responde a un problema real o solo a un interés personal?",
+                q: "2. ¿Tu tema responde a un problema real o solo a un interés personal?",
                 options: [
                     "Responde a un problema real con evidencia",
                     "Es interés personal, pero tiene sentido",
@@ -923,7 +923,7 @@
                 ],
             },
             {
-                q: "11. Cuando explicas tu tesis, ¿el verbo de tu objetivo refleja exactamente lo que quieres investigar ?",
+                q: "11. Cuando explicas tu tesis, ¿el verbo de tu objetivo refleja exactamente lo que quieres investigar?",
                 options: [
                     "Sí, coincide perfectamente",
                     "Hay algo que no termina de encajar",
@@ -1140,15 +1140,15 @@
             const nivelAcademico = document.getElementById("select-nivel").value || "no especificado";
             const phone = "51976443266";
             let waMsg = "";
-            
+
             if (nombreCompleto) {
                 waMsg = `Hola soy ${nombreCompleto}, estoy en nivel académico ${nivelAcademico} necesito más información`;
             } else {
                 waMsg = `Hola, estoy en nivel académico ${nivelAcademico} necesito más información`;
             }
-            
+
             const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(waMsg)}`;
-            
+
             // Aplicar a ambos botones
             const btnWA = document.getElementById("btn-whatsapp");
             const floatingWA = document.getElementById("floating-whatsapp");

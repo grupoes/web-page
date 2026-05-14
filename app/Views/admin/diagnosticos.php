@@ -281,7 +281,6 @@
                                     </div>
                                     <div class="flex-grow-1" onclick="seleccionarPregunta(${pregunta.id})" style="cursor: pointer;">
                                         <h6 class="mb-0">${index + 1}. ${pregunta.enunciado}</h6>
-                                        <small class="text-muted">ID: ${pregunta.id}</small>
                                     </div>
                                     <div class="dropdown">
                                         <button class="btn btn-link dropdown-toggle arrow-none text-muted p-0" data-toggle="dropdown" aria-expanded="false">
