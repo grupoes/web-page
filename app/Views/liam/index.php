@@ -996,7 +996,7 @@
                 green: {
                     range: [Math.round(maxScore * 0.8), maxScore],
                     percent: Math.round((score / maxScore) * 100) + "%",
-                    title: 'tu tesis está <span class="text-brand-green">bien encaminada</span>',
+                    title: 'Tu tesis está <span class="text-brand-green">bien encaminada</span>',
                     message: "Tu tema está bien encaminado. Lo que te queda por delante es la parte técnica: validación del instrumento, análisis estadístico, redacción de resultados, formato APA, reducción de Turnitin. Te podemos asistir en los bloques que necesites delegar de la operación técnica, mientras tú te concentras en comprender los hallazgos y preparar tu sustentación.",
                     color: "#00E8AE",
                     badge: "VERDE: BIEN ENCAMINADA",
@@ -1006,7 +1006,7 @@
                 yellow: {
                     range: [Math.round(maxScore * 0.5), Math.round(maxScore * 0.8) - 1],
                     percent: Math.round((score / maxScore) * 100) + "%",
-                    title: 'tu tesis está en <span class="text-amber-500">zona de riesgo</span>',
+                    title: 'Tu tesis está en <span class="text-amber-500">zona de riesgo</span>',
                     message: "Tu tema tiene fondo, pero hay desalineaciones que pueden costarte observaciones serias o un dictamen desaprobado. Aún estás en un punto ideal para ordenar tu planteamiento, te acompañamos a organizar tu marco teórico y estructurar tu proyecto paso a paso. Tú aportas la idea; nosotros te asistimos en convertirla en un proyecto bien fundamentado.",
                     color: "#f59e0b",
                     badge: "AMARILLO: EN RIESGO",
@@ -1016,7 +1016,7 @@
                 red: {
                     range: [0, Math.round(maxScore * 0.5) - 1],
                     percent: Math.round((score / maxScore) * 100) + "%",
-                    title: 'tu tesis tiene <span class="text-rose-500">problemas estructurales</span>',
+                    title: 'Tu tesis tiene <span class="text-rose-500">problemas estructurales</span>',
                     message: "Tu idea de investigación necesita replantearse antes de seguir avanzando. Tal como está, es probable que enfrentes múltiples observaciones o dificultades para sostenerla académicamente. Si quieres ordenar tu tema y convertirlo en una propuesta sólida, podemos ayudarte a trabajarlo contigo desde el inicio.",
                     color: "#ef4444",
                     badge: "ROJO: PROBLEMAS ESTRUCTURALES",
@@ -1031,7 +1031,7 @@
             else res = resultData.red;
 
             // Update UI
-            document.getElementById("result-title").innerHTML = `${primerNombre}, ${res.title}`;
+            document.getElementById("result-title").innerHTML = res.title;
             document.getElementById("result-message").innerText = res.message;
             document.getElementById("result-badge-text").innerText = res.badge;
             document.getElementById("score-text").innerText = res.percent;
