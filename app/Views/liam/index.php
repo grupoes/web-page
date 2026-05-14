@@ -846,100 +846,11 @@
     </section>
 
     <script>
-        const questions = [{
-                q: "1. ¿Tu tema está alineado con tu carrera?",
-                options: ["Sí, ya lo confirmé", "Creo que sí", "No lo sé"],
-            },
-            {
-                q: "2. ¿Tu tema responde a un problema real o solo a un interés personal?",
-                options: [
-                    "Responde a un problema real con evidencia",
-                    "Es interés personal, pero tiene sentido",
-                    "Lo elegí solo porque me interesa",
-                ],
-            },
-            {
-                q: "3. ¿Tu tesis aporta algo nuevo frente a otras investigaciones?",
-                options: [
-                    "Sí, tengo claro el aporte",
-                    "Es similar, pero cambia el contexto",
-                    "No he revisado investigaciones previas",
-                ],
-            },
-            {
-                q: "4. ¿Tienes claro el tipo de investigación de tu tema (descriptivo, correlacional, etc.)?",
-                options: [
-                    "Sí, y mi objetivo está bien planteado.",
-                    "Tengo una idea, pero no estoy seguro",
-                    "No lo tengo claro.",
-                ],
-            },
-            {
-                q: "5. ¿Tienes acceso real a las personas o datos que necesitas ?",
-                options: [
-                    "Sí, ya tengo el acceso confirmado",
-                    "Creo que podré acceder",
-                    "No, todavía no he verificado el acceso",
-                ],
-            },
-            {
-                q: "6. ¿Tienes autores o estudios confiables sobre tu tema?",
-                options: [
-                    "Sí, tengo autores claros",
-                    "Tengo algunos, pero no estoy seguro",
-                    "No he investigado eso aún",
-                ],
-            },
-            {
-                q: "7. ¿Tu título sugiere ya un resultado o juicio antes de investigar?",
-                options: [
-                    "No, mi título es neutro",
-                    "Tiene alguna palabra que podría sugerir un resultado",
-                    "Sí, ya da por hecho un resultado",
-                ],
-            },
-            {
-                q: "8. ¿Tu variable principal tiene un instrumento validado que puedes usar?",
-                options: [
-                    "Sí, ya identifiqué autor e instrumento",
-                    "Sé que existe pero no lo he ubicado",
-                    "Pienso construir mi propia encuesta desde cero",
-                ],
-            },
-            {
-                q: "9. ¿Tu tema es una investigación o en realidad es una propuesta que quieres aplicar?",
-                options: [
-                    "Es claramente una investigación",
-                    "Es una propuesta de mejora o diseño que después quiero validar",
-                    "No tengo claro la diferencia entre ambas",
-                ],
-            },
-            {
-                q: "10. Nombre de la variable: ¿Estás usando el mismo término que aparece en estudios o papers académicos?",
-                options: [
-                    "Sí, uso el mismo nombre que aparece en los papers",
-                    "Uso uno parecido, pero no estoy seguro",
-                    "No he revisado cómo se usa en estudios",
-                ],
-            },
-            {
-                q: "11. Cuando explicas tu tesis, ¿el verbo de tu objetivo refleja exactamente lo que quieres investigar?",
-                options: [
-                    "Sí, coincide perfectamente",
-                    "Hay algo que no termina de encajar",
-                    "No estoy seguro de cuál debería ser el verbo",
-                ],
-            },
-            {
-                q: "12. ¿Cuál es la situación actual de tu tema?",
-                options: [
-                    "Aprobado por mi asesor",
-                    "En revisión / con observaciones",
-                    "Rechazado u observado más de una vez",
-                    "Aún no lo he presentado",
-                ],
-            },
-        ];
+        const questions = (<?php echo json_encode($preguntas ?? []); ?>).map(p => ({
+            id: p.id,
+            q: p.enunciado,
+            options: p.opciones || []
+        }));
 
         let currentQuestionIndex = 0;
         let answers = [];
@@ -958,7 +869,7 @@
             const q = questions[currentQuestionIndex];
             document.getElementById("question-text").innerText = q.q;
             document.getElementById("question-counter").innerText =
-                `Pregunta ${String(currentQuestionIndex + 1).padStart(2, "0")} de 12`;
+                `Pregunta ${String(currentQuestionIndex + 1).padStart(2, "0")} de ${String(questions.length).padStart(2, "0")}`;
 
             const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
             document.getElementById("progress-bar").style.width = `${progress}%`;
@@ -974,10 +885,14 @@
                 const isSelected = savedAnswer === index;
                 const btn = document.createElement("button");
                 btn.className = `tactile-card group flex items-center justify-between p-3 md:p-4 rounded-xl border-2 transition-all text-left w-full ${isSelected ? "border-brand-blue-light bg-brand-blue-light/[0.03]" : "border-slate-100 bg-white hover:border-brand-green/30 hover:bg-brand-green/5"}`;
+                btn.onclick = () => selectOption(index);
+
                 btn.innerHTML = `
-                    <span class="font-medium ${isSelected ? "text-primary font-bold" : "text-on-surface-variant"} group-hover:text-primary transition-colors">${opt}</span>
-                    <div class="w-6 h-6 rounded-full border-2 ${isSelected ? "border-brand-green" : "border-slate-200"} group-hover:border-brand-green flex items-center justify-center transition-all">
-                        <div class="w-2.5 h-2.5 rounded-full bg-brand-green ${isSelected ? "opacity-100" : "opacity-0"} group-hover:opacity-100 transition-opacity"></div>
+                    <div class="flex items-center gap-3 md:gap-4">
+                        <span class="text-sm md:text-base font-medium text-slate-700 leading-snug">${opt.texto_opcion}</span>
+                    </div>
+                    <div class="flex items-center justify-center w-5 h-5 rounded-full border ${isSelected ? "border-brand-blue bg-brand-blue" : "border-slate-200 bg-white"}">
+                        ${isSelected ? '<i class="bi bi-check text-white text-xs"></i>' : ""}
                     </div>
                 `;
                 btn.onclick = () => selectOption(index);
@@ -1029,21 +944,26 @@
                 behavior: "smooth"
             });
 
-            // Calculate Score: Op1 = 2, Op2 = 1, Op3 = 0
+            // Calculate Score based on database points
             let totalScore = 0;
-            answers.forEach((ans) => {
-                if (ans === 0) totalScore += 2;
-                else if (ans === 1) totalScore += 1;
+            let maxScore = 0;
+            answers.forEach((ans, index) => {
+                const q = questions[index];
+                totalScore += parseInt(q.options[ans].puntos);
             });
+
+            questions.forEach(q => {
+                const maxPoints = Math.max(...q.options.map(o => parseInt(o.puntos)));
+                maxScore += maxPoints;
+            });
+
+            window.maxPossibleScore = maxScore;
+            window.finalScore = totalScore;
 
             setTimeout(() => {
                 transitionSection.classList.add("hidden");
-                document.getElementById("name-step").classList.remove("hidden");
-                document.getElementById("name-step").scrollIntoView({
-                    behavior: "smooth"
-                });
-                // Guardar puntaje para usarlo después de pedir el nombre
-                window.finalScore = totalScore;
+                // Ir directo a los resultados, saltando la solicitud de nombre
+                displayResults();
             }, 3000);
         }
 
@@ -1070,10 +990,12 @@
             const nombreCompleto = document.getElementById("input-nombre").value.trim();
             const primerNombre = nombreCompleto.split(' ')[0];
 
+            const maxScore = window.maxPossibleScore || 24;
+
             const resultData = {
                 green: {
-                    range: [20, 24],
-                    percent: Math.round((score / 24) * 100) + "%",
+                    range: [Math.round(maxScore * 0.8), maxScore],
+                    percent: Math.round((score / maxScore) * 100) + "%",
                     title: 'tu tesis está <span class="text-brand-green">bien encaminada</span>',
                     message: "Tu tema está bien encaminado. Lo que te queda por delante es la parte técnica: validación del instrumento, análisis estadístico, redacción de resultados, formato APA, reducción de Turnitin. Te podemos asistir en los bloques que necesites delegar de la operación técnica, mientras tú te concentras en comprender los hallazgos y preparar tu sustentación.",
                     color: "#00E8AE",
@@ -1082,8 +1004,8 @@
                     img: "<?= base_url('assets/img/liam_alegre.png') ?>"
                 },
                 yellow: {
-                    range: [12, 19],
-                    percent: Math.round((score / 24) * 100) + "%",
+                    range: [Math.round(maxScore * 0.5), Math.round(maxScore * 0.8) - 1],
+                    percent: Math.round((score / maxScore) * 100) + "%",
                     title: 'tu tesis está en <span class="text-amber-500">zona de riesgo</span>',
                     message: "Tu tema tiene fondo, pero hay desalineaciones que pueden costarte observaciones serias o un dictamen desaprobado. Aún estás en un punto ideal para ordenar tu planteamiento, te acompañamos a organizar tu marco teórico y estructurar tu proyecto paso a paso. Tú aportas la idea; nosotros te asistimos en convertirla en un proyecto bien fundamentado.",
                     color: "#f59e0b",
@@ -1092,8 +1014,8 @@
                     img: "<?= base_url('assets/img/liampensativo.png') ?>"
                 },
                 red: {
-                    range: [0, 11],
-                    percent: Math.round((score / 24) * 100) + "%",
+                    range: [0, Math.round(maxScore * 0.5) - 1],
+                    percent: Math.round((score / maxScore) * 100) + "%",
                     title: 'tu tesis tiene <span class="text-rose-500">problemas estructurales</span>',
                     message: "Tu idea de investigación necesita replantearse antes de seguir avanzando. Tal como está, es probable que enfrentes múltiples observaciones o dificultades para sostenerla académicamente. Si quieres ordenar tu tema y convertirlo en una propuesta sólida, podemos ayudarte a trabajarlo contigo desde el inicio.",
                     color: "#ef4444",
